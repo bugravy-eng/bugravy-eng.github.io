@@ -4,6 +4,8 @@
 
 'use strict';
 
+const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
 /* ─── CUSTOM CURSOR ─────────────────────────────────────── */
 const curDot  = document.getElementById('cur-dot');
 const curRing = document.getElementById('cur-ring');
@@ -16,7 +18,7 @@ window.addEventListener('mousemove', e => {
   curDot.style.top  = my + 'px';
 });
 
-(function animRing() {
+if (!prefersReducedMotion) (function animRing() {
   rx += (mx - rx) * 0.1;
   ry += (my - ry) * 0.1;
   curRing.style.left = rx + 'px';
@@ -24,7 +26,7 @@ window.addEventListener('mousemove', e => {
   requestAnimationFrame(animRing);
 })();
 
-document.querySelectorAll('a, button, .feat-card, .sec-card, .price-card, .plan-cta, .channel').forEach(el => {
+document.querySelectorAll('a, button, .feat-card, .sec-card, .price-card, .plan-cta, .channel, .sector-tab').forEach(el => {
   el.addEventListener('mouseenter', () => document.body.classList.add('c-hover'));
   el.addEventListener('mouseleave', () => document.body.classList.remove('c-hover'));
 });
@@ -87,18 +89,167 @@ document.addEventListener('click', () => {
   mobileLangTrigger?.classList.remove('open');
 });
 
+/* ─── SECTOR DATA ────────────────────────────────────────── */
+const SECTOR_DATA = {
+  klinik: {
+    greeting:    'Merhaba! 👋 Kliniğimize hoş geldiniz. Size nasıl yardımcı olabilirim?',
+    buttons:     ['📅 Randevu Al', '💊 Tedavi Bilgisi', '💰 Fiyat Öğren'],
+    customerMsg: 'Konsültasyon için randevu almak istiyorum',
+    flowBadge:   '🗓️ RANDEVU FORMU',
+    flowCardTxt: 'Randevu almak için formu açınız...',
+    formTitle:   'Randevu Bilgileri',
+    formSub:     'Formu doldurun, hemen onaylayalım',
+    service:     'Saç Ekimi Konsültasyon',
+    dates:       [['Sal','20'],['Çar','21'],['Per','22'],['Cum','23']],
+    times:       ['10:00','11:30','14:00'],
+    btn:         'Randevuyu Onayla ✓',
+    dash: {
+      stats: [
+        { count: 47, suffix: '',  label: 'Bugün mesaj', trend: '↑ %23' },
+        { count: 12, suffix: '',  label: 'Randevu',     trend: '↑ %8'  },
+        { count: 91, suffix: '%', label: 'Otomasyon',   trend: '✓ hedef' },
+        { text: '3s',             label: 'Ort. yanıt',  trend: '✓'     },
+      ],
+      section: 'Bugünkü Randevular',
+      rows: [
+        { name: 'Ayşe Demir',  time: '10:00 · Konsültasyon', badge: 'Onaylı',  dot: 'dot-g', bg: 'bg-g' },
+        { name: 'Emre Çelik',  time: '11:30 · FUE Saç',      badge: 'Bekliyor',dot: 'dot-y', bg: 'bg-y' },
+        { name: 'Fatma Kaya',  time: '14:00 · Kaş Ekimi',    badge: 'Onaylı',  dot: 'dot-g', bg: 'bg-g' },
+      ]
+    }
+  },
+  restoran: {
+    greeting:    'Merhaba! 👋 Hoş geldiniz. Bugün size nasıl yardımcı olabiliriz?',
+    buttons:     ['📅 Rezervasyon Al', '🍽️ Menüyü İncele', '📍 Konum & Saatler'],
+    customerMsg: 'Bu akşam masa rezervasyonu istiyorum',
+    flowBadge:   '🍽️ REZERVASYON FORMU',
+    flowCardTxt: 'Masa rezervasyonu için formu açınız...',
+    formTitle:   'Masa Rezervasyonu',
+    formSub:     'Kişi sayısı ve saat seçin',
+    service:     '👥 4 Kişilik Masa',
+    dates:       [['Paz','15'],['Pts','16'],['Sal','17'],['Çar','18']],
+    times:       ['19:00','20:00','21:00'],
+    btn:         'Rezervasyonu Onayla ✓',
+    dash: {
+      stats: [
+        { count: 63, suffix: '',  label: 'Bugün mesaj',  trend: '↑ %31' },
+        { count: 18, suffix: '',  label: 'Rezervasyon',  trend: '↑ %15' },
+        { count: 94, suffix: '%', label: 'Otomasyon',    trend: '✓ hedef' },
+        { text: '2s',             label: 'Ort. yanıt',   trend: '✓'     },
+      ],
+      section: 'Bugünkü Rezervasyonlar',
+      rows: [
+        { name: 'Masa 4',  time: '19:30 · 4 kişi', badge: 'Onaylı',  dot: 'dot-g', bg: 'bg-g' },
+        { name: 'Masa 7',  time: '20:00 · 2 kişi', badge: 'Bekliyor',dot: 'dot-y', bg: 'bg-y' },
+        { name: 'Masa 12', time: '21:00 · 6 kişi', badge: 'Onaylı',  dot: 'dot-g', bg: 'bg-g' },
+      ]
+    }
+  },
+  guzellik: {
+    greeting:    'Merhaba! 👋 Salonumuza hoş geldiniz. Ne yapmak istersiniz?',
+    buttons:     ['📅 Seans Rezervasyonu', '💅 Hizmetlerimiz', '💰 Fiyat Listesi'],
+    customerMsg: 'Saç boyama için seans randevusu istiyorum',
+    flowBadge:   '✂️ SEANS FORMU',
+    flowCardTxt: 'Güzellik seansı için formu açınız...',
+    formTitle:   'Güzellik Seansı',
+    formSub:     'Hizmet ve zamanınızı seçin',
+    service:     'Saç Boyama & Refleks',
+    dates:       [['Pts','16'],['Sal','17'],['Çar','18'],['Per','19']],
+    times:       ['10:30','13:00','15:30'],
+    btn:         'Randevuyu Onayla ✓',
+    dash: {
+      stats: [
+        { count: 38, suffix: '',  label: 'Bugün mesaj', trend: '↑ %17' },
+        { count: 9,  suffix: '',  label: 'Seans',       trend: '↑ %12' },
+        { count: 89, suffix: '%', label: 'Otomasyon',   trend: '✓ hedef' },
+        { text: '4s',             label: 'Ort. yanıt',  trend: '✓'     },
+      ],
+      section: 'Bugünkü Seanslar',
+      rows: [
+        { name: 'Zeynep Arslan', time: '10:30 · Saç Boyama',   badge: 'Onaylı',  dot: 'dot-g', bg: 'bg-g' },
+        { name: 'Selin Yıldız',  time: '13:00 · Manikür',      badge: 'Onaylı',  dot: 'dot-g', bg: 'bg-g' },
+        { name: 'Canan Demir',   time: '15:30 · Kaş Şekli',   badge: 'Bekliyor',dot: 'dot-y', bg: 'bg-y' },
+      ]
+    }
+  },
+  servis: {
+    greeting:    'Merhaba! 👋 Servisimize hoş geldiniz. Aracınız için ne yapabiliriz?',
+    buttons:     ['🔧 Servis Randevusu', '🚗 Araç Sorgula', '💰 Fiyat Al'],
+    customerMsg: 'Aracım için bakım randevusu almak istiyorum',
+    flowBadge:   '🔧 SERVİS FORMU',
+    flowCardTxt: 'Servis randevusu için formu açınız...',
+    formTitle:   'Araç Kabul Formu',
+    formSub:     'Bilgileri girin, randevu oluşturalım',
+    service:     'Periyodik Bakım — 15.000 km',
+    dates:       [['Pts','16'],['Sal','17'],['Per','19'],['Cum','20']],
+    times:       ['09:00','11:00','14:00'],
+    btn:         'Randevuyu Onayla ✓',
+    dash: {
+      stats: [
+        { count: 29, suffix: '',  label: 'Bugün mesaj', trend: '↑ %11' },
+        { count: 7,  suffix: '',  label: 'Araç',        trend: '↑ %6'  },
+        { count: 88, suffix: '%', label: 'Otomasyon',   trend: '✓ hedef' },
+        { text: '3s',             label: 'Ort. yanıt',  trend: '✓'     },
+      ],
+      section: 'Bugünkü Araçlar',
+      rows: [
+        { name: '34 ABC 123', time: '09:00 · Yağ Değişimi', badge: 'Onaylı',  dot: 'dot-g', bg: 'bg-g' },
+        { name: '06 XYZ 456', time: '11:00 · Fren Bakımı',  badge: 'Bekliyor',dot: 'dot-y', bg: 'bg-y' },
+        { name: '35 DEF 789', time: '14:00 · Lastik Değ.',  badge: 'Onaylı',  dot: 'dot-g', bg: 'bg-g' },
+      ]
+    }
+  },
+  emlak: {
+    greeting:    'Merhaba! 👋 Hoş geldiniz. Hayalinizdeki mülkü bulmak için buradayız!',
+    buttons:     ['🏠 Ziyaret Planla', '🔍 İlanları Gör', '📞 Danışmana Bağlan'],
+    customerMsg: 'Satılık 3+1 daire için bilgi almak istiyorum',
+    flowBadge:   '🏠 ZİYARET FORMU',
+    flowCardTxt: 'Gayrimenkul ziyareti için formu açınız...',
+    formTitle:   'Ziyaret Randevusu',
+    formSub:     'Tercih ve zamanınızı seçin',
+    service:     '3+1 Daire — Kadıköy',
+    dates:       [['Sal','17'],['Çar','18'],['Per','19'],['Cum','20']],
+    times:       ['11:00','14:00','16:00'],
+    btn:         'Ziyareti Onayla ✓',
+    dash: {
+      stats: [
+        { count: 22, suffix: '',  label: 'Bugün mesaj', trend: '↑ %9'  },
+        { count: 5,  suffix: '',  label: 'Ziyaret',     trend: '↑ %4'  },
+        { count: 85, suffix: '%', label: 'Otomasyon',   trend: '✓ hedef' },
+        { text: '5s',             label: 'Ort. yanıt',  trend: '✓'     },
+      ],
+      section: 'Bugünkü Ziyaretler',
+      rows: [
+        { name: 'Mehmet Kaya',  time: '11:00 · 3+1 Kadıköy',    badge: 'Onaylı',  dot: 'dot-g', bg: 'bg-g' },
+        { name: 'Aylin Şahin',  time: '14:00 · 2+1 Beşiktaş',   badge: 'Onaylı',  dot: 'dot-g', bg: 'bg-g' },
+        { name: 'Can Erdoğan',  time: '16:00 · Daire Ataşehir',  badge: 'Bekliyor',dot: 'dot-y', bg: 'bg-y' },
+      ]
+    }
+  }
+};
+
 /* ─── HERO PHONE ANIMATOR ───────────────────────────────── */
 class HeroPhone {
   constructor() {
-    this.screens  = Array.from(document.querySelectorAll('.pscreen'));
-    this.dots     = Array.from(document.querySelectorAll('.pdot'));
-    this.current  = 0;
-    this.timers   = [];
+    this.screens   = Array.from(document.querySelectorAll('.pscreen'));
+    this.dots      = Array.from(document.querySelectorAll('.pdot'));
+    this.current   = 0;
+    this.timers    = [];
+    this.nextTimer = null; // tracked separately so switchSector can cancel it
     this.durations = [7000, 6500, 6500]; // ms each screen stays visible
 
     if (!this.screens.length) return;
     this.activate(0);
     this.schedule();
+
+    // Sector tab switching
+    document.querySelectorAll('.sector-tab').forEach(tab => {
+      tab.addEventListener('click', () => {
+        document.querySelectorAll('.sector-tab').forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+        this.switchSector(tab.dataset.sector);
+      });
+    });
   }
 
   schedule() {
@@ -112,13 +263,12 @@ class HeroPhone {
   next() {
     const nextIdx = (this.current + 1) % this.screens.length;
     const curr = this.screens[this.current];
-    const next = this.screens[nextIdx];
 
-    // Exit current
     curr.classList.add('exiting');
     this.dots[this.current]?.classList.remove('active');
 
-    setTimeout(() => {
+    this.nextTimer = setTimeout(() => {
+      this.nextTimer = null;
       curr.classList.remove('active', 'exiting');
       this.current = nextIdx;
       this.activate(nextIdx);
@@ -160,6 +310,117 @@ class HeroPhone {
     const t = setTimeout(fn, ms);
     this.timers.push(t);
     return t;
+  }
+
+  switchSector(key) {
+    const d = SECTOR_DATA[key];
+    if (!d) return;
+
+    // Cancel every pending timer including the untracked next() transition
+    this.timers.forEach(clearTimeout);
+    this.timers = [];
+    if (this.nextTimer) { clearTimeout(this.nextTimer); this.nextTimer = null; }
+
+    // ── Update pscreen-0 chat content ──
+    const s0 = document.getElementById('pscreen-0');
+    if (s0) {
+      // First bot message: sector-specific greeting + buttons
+      const firstMsg = s0.querySelector('.msg-i[data-anim]');
+      if (firstMsg) {
+        const btnsHtml = d.buttons
+          .map(b => `<div class="msg-btn" data-anim>${b}</div>`)
+          .join('');
+        firstMsg.innerHTML = `${d.greeting}<div class="msg-btns">${btnsHtml}</div><div class="msg-t">09:41</div>`;
+      }
+
+      // Outgoing customer message
+      const outMsg = s0.querySelector('.msg-o[data-anim]');
+      if (outMsg) outMsg.innerHTML = `${d.customerMsg}<div class="msg-t">09:42 ✓✓</div>`;
+
+      // Last bot message: flow card
+      const flowMsgs = s0.querySelectorAll('.msg-i[data-anim]');
+      const lastMsg  = flowMsgs[flowMsgs.length - 1];
+      if (lastMsg && lastMsg !== firstMsg) {
+        lastMsg.innerHTML = `<span style="color:#25D366;font-weight:700;font-size:9px;display:block;margin-bottom:4px">${d.flowBadge}</span>${d.flowCardTxt}<div style="background:#25D366;color:#fff;border-radius:6px;padding:5px;font-size:10px;font-weight:700;text-align:center;margin-top:6px">Formu Aç →</div><div class="msg-t">09:42</div>`;
+      }
+    }
+
+    // ── Update pscreen-1 flow form content ──
+    const s1 = document.getElementById('pscreen-1');
+    if (s1) {
+      const h1 = s1.querySelector('.flow-h1');
+      if (h1) h1.textContent = d.formTitle;
+
+      const sub = s1.querySelector('.flow-sub');
+      if (sub) sub.textContent = d.formSub;
+
+      const svc = s1.querySelector('.flow-val-svc');
+      if (svc) svc.innerHTML = `${d.service} <span style="color:#999;font-size:9px">▼</span>`;
+
+      const dateRows = s1.querySelectorAll('.date-row');
+      if (dateRows[0]) {
+        const chips = dateRows[0].querySelectorAll('.date-chip');
+        d.dates.forEach((pair, i) => {
+          if (chips[i]) chips[i].innerHTML = `${pair[0]}<br><b>${pair[1]}</b>`;
+        });
+      }
+      if (dateRows[1]) {
+        const chips = dateRows[1].querySelectorAll('.date-chip');
+        d.times.forEach((t, i) => { if (chips[i]) chips[i].textContent = t; });
+      }
+
+      const btn = s1.querySelector('.flow-btn-gr');
+      if (btn) btn.textContent = d.btn;
+    }
+
+    // ── Update pscreen-2 (dashboard) ──
+    const s2 = document.getElementById('pscreen-2');
+    if (s2 && d.dash) {
+      const cards = s2.querySelectorAll('.dash-card');
+      d.dash.stats.forEach((stat, i) => {
+        const card = cards[i];
+        if (!card) return;
+        const val   = card.querySelector('.dash-val');
+        const lbl   = card.querySelector('.dash-lbl');
+        const trend = card.querySelector('.dash-trend');
+        if (val) {
+          if (stat.count !== undefined) {
+            val.dataset.count = stat.count;
+            if (stat.suffix !== undefined) val.dataset.suffix = stat.suffix;
+            val.textContent = '0';
+          } else {
+            delete val.dataset.count;
+            val.textContent = stat.text || '';
+          }
+        }
+        if (lbl)   lbl.textContent   = stat.label;
+        if (trend) trend.textContent = stat.trend;
+      });
+
+      const sec = s2.querySelector('.dash-sec');
+      if (sec) sec.textContent = d.dash.section;
+
+      const rows = s2.querySelectorAll('.dash-row');
+      d.dash.rows.forEach((row, i) => {
+        const el = rows[i];
+        if (!el) return;
+        const dot   = el.querySelector('.dash-dot');
+        const name  = el.querySelector('.dash-rn');
+        const time  = el.querySelector('.dash-rt');
+        const badge = el.querySelector('.dash-badge');
+        if (dot)   dot.className        = 'dash-dot ' + row.dot;
+        if (name)  name.textContent     = row.name;
+        if (time)  time.textContent     = row.time;
+        if (badge) { badge.textContent  = row.badge; badge.className = 'dash-badge ' + row.bg; }
+        el.classList.remove('show');
+      });
+    }
+
+    // Reset and restart from screen 0 (chat)
+    this.screens.forEach(s => s.classList.remove('active', 'exiting'));
+    this.current = 0;
+    this.activate(0);
+    this.schedule();
   }
 
   showAnim(el) {
@@ -228,8 +489,9 @@ class HeroPhone {
   }
 
   countUp(el, target, duration) {
-    const start = Date.now();
     const suffix = el.dataset.suffix || '';
+    if (prefersReducedMotion) { el.textContent = target + suffix; return; }
+    const start = Date.now();
     const tick = () => {
       const p = Math.min((Date.now() - start) / duration, 1);
       const ease = 1 - Math.pow(1 - p, 3);
@@ -240,34 +502,6 @@ class HeroPhone {
   }
 }
 
-/* ─── SCROLL DEMO PHONE ──────────────────────────────────── */
-function initScrollDemo() {
-  const steps   = document.querySelectorAll('#demo .step');
-  const slides  = document.querySelectorAll('#demo-phone .phone-slide');
-  if (!steps.length || !slides.length) return;
-
-  let current = 0;
-
-  function show(idx) {
-    if (idx === current) return;
-    slides[current].classList.remove('active');
-    slides[idx].classList.add('active');
-    current = idx;
-  }
-
-  const obs = new IntersectionObserver(entries => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        const idx = parseInt(e.target.dataset.screen, 10);
-        steps.forEach(s => s.classList.remove('active'));
-        e.target.classList.add('active');
-        show(idx);
-      }
-    });
-  }, { threshold: 0.5, rootMargin: '-10% 0px -35% 0px' });
-
-  steps.forEach(s => obs.observe(s));
-}
 
 /* ─── FADE UP ────────────────────────────────────────────── */
 function initFadeUp() {
@@ -315,6 +549,7 @@ function initSmoothScroll() {
 
 /* ─── HERO SCROLL EXIT ───────────────────────────────────── */
 function initHeroScroll() {
+  if (prefersReducedMotion) return;
   const hero = document.getElementById('hero');
   if (!hero) return;
   window.addEventListener('scroll', () => {
@@ -329,80 +564,6 @@ function initHeroScroll() {
   }, { passive: true });
 }
 
-/* ─── AI CHAT DEMO ANIMATOR ──────────────────────────────── */
-function initAiChatDemo() {
-  const msgs      = document.querySelectorAll('#ai-demo-msgs > *');
-  const overlay   = document.getElementById('ai-flow-overlay');
-  const submitBtn = document.getElementById('afo-submit');
-  if (!msgs.length) return;
-
-  // #ai-demo-msgs children: 0=user, 1=typing, 2=bot-flow-card, 3=confirmation
-  const sequence = [
-    { idx: 0, inAt: 400 },               // user msg
-    { idx: 1, inAt: 1100, outAt: 1900 }, // typing
-    { idx: 2, inAt: 1900 },              // bot sends flow card
-    { idx: 3, inAt: 7600 },              // confirmation after flow closes
-  ];
-
-  const CYCLE = 12000;
-  let timers = [];
-
-  function show(el) {
-    el.style.transition = 'opacity .4s ease, transform .4s ease';
-    el.style.opacity = '1';
-    el.style.transform = 'translateY(0)';
-  }
-  function hide(el) {
-    el.style.transition = 'opacity .3s ease';
-    el.style.opacity = '0';
-    el.style.transform = 'translateY(0)';
-  }
-  function reset() {
-    timers.forEach(clearTimeout);
-    timers = [];
-    msgs.forEach(el => {
-      el.style.transition = 'none';
-      el.style.opacity = '0';
-      el.style.transform = 'translateY(10px)';
-    });
-    overlay?.classList.remove('open');
-    submitBtn?.classList.remove('glow');
-    overlay?.querySelectorAll('.date-chip').forEach(c => c.classList.remove('sel'));
-  }
-
-  function animate() {
-    reset();
-    sequence.forEach(step => {
-      timers.push(setTimeout(() => show(msgs[step.idx]), step.inAt));
-      if (step.outAt) timers.push(setTimeout(() => hide(msgs[step.idx]), step.outAt));
-    });
-    // Flow form opens (slides up over chat)
-    timers.push(setTimeout(() => overlay?.classList.add('open'), 3600));
-    // Chip selections — one by one after form opens
-    timers.push(setTimeout(() => {
-      const rows = overlay?.querySelectorAll('.date-row');
-      rows?.[0]?.querySelectorAll('.date-chip')[1]?.classList.add('sel'); // 👥 4
-    }, 4200));
-    timers.push(setTimeout(() => {
-      const rows = overlay?.querySelectorAll('.date-row');
-      rows?.[1]?.querySelectorAll('.date-chip')[1]?.classList.add('sel'); // Çar 21
-    }, 4900));
-    timers.push(setTimeout(() => {
-      const rows = overlay?.querySelectorAll('.date-row');
-      rows?.[2]?.querySelectorAll('.date-chip')[1]?.classList.add('sel'); // 20:00
-    }, 5600));
-    // Submit button pulses (user taps)
-    timers.push(setTimeout(() => submitBtn?.classList.add('glow'), 6300));
-    // Flow form closes (slides back down)
-    timers.push(setTimeout(() => {
-      overlay?.classList.remove('open');
-      submitBtn?.classList.remove('glow');
-    }, 7100));
-  }
-
-  animate();
-  setInterval(animate, CYCLE);
-}
 
 /* ─── GEO PRICING ────────────────────────────────────────── */
 const geoState = { isTurkey: false, rate: null };
@@ -475,11 +636,12 @@ function initPriceToggle() {
 /* ─── INIT ───────────────────────────────────────────────── */
 document.addEventListener('DOMContentLoaded', () => {
   new HeroPhone();
-  initScrollDemo();
   initFadeUp();
   initSmoothScroll();
   initHeroScroll();
-  initAiChatDemo();
   initPriceToggle();
   initGeoPrice();
+  document.querySelectorAll('.channel[href*="wa.me"]').forEach(a => {
+    a.href = `https://wa.me/${WA_NUMBER}`;
+  });
 });

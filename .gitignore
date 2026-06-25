@@ -1,3 +1,13 @@
 .DS_Store
 .firebase/
 node_modules/
+
+# Local tooling / agent configs — not part of the deployed site
+.agents/
+.claude/
+.impeccable/
+skills-lock.json
+
+# Internal planning docs — not for public repo
+DESIGN.md
+PRODUCT.md

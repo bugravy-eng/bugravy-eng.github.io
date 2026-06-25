@@ -17,11 +17,54 @@ const LANGS = {
     'hero-btn-demo'   : 'Demo İste <span>→</span>',
     'hero-btn-how'    : 'Nasıl Çalışır?',
     'hero-note'       : '20+ işletme &nbsp;·&nbsp; ⭐ 4.9 puan',
+    'sector-tabs-label': 'Sektörünüzü seçin',
+    'st-klinik'       : 'Klinik',
+    'st-restoran'     : 'Restoran',
+    'st-guzellik'     : 'Güzellik',
+    'st-servis'       : 'Oto Servis',
+    'st-emlak'        : 'Gayrimenkul',
     'marquee-text'    : 'WhatsApp Flow <span class="ms">·</span> AI Intent Algılama <span class="ms">·</span> Canlı Dashboard <span class="ms">·</span> 7/24 Aktif <span class="ms">·</span> Randevu Otomasyonu <span class="ms">·</span> KVKK Uyumlu <span class="ms">·</span> Türkçe Destek <span class="ms">·</span> Kurulum Dahil <span class="ms">·</span>',
     'stat-1'          : 'Kesintisiz aktif çalışır',
     'stat-2'          : 'Ortalama yanıt süresi',
     'stat-3'          : 'Mesaj otomasyon oranı',
     'stat-4'          : 'Gelen mesaj yanıt maliyeti',
+    'pipe-tag'        : 'Nasıl Çalışır',
+    'pipe-h2'         : 'WhatsApp içinde,<br><em>uçtan uca otomasyon</em>',
+    'pipe-desc'       : 'WhatsApp Flow teknolojisiyle müşteriniz uygulamadan çıkmadan randevu alır, rezervasyon yapar, teklif ister — 7/24, siz uyurken de.',
+    'pipe-1-h'        : 'Müşteri yazar',
+    'pipe-1-p'        : 'WhatsApp\'tan gelen her mesaj — kısa, uzun, yazım hatalı — sisteme anında ulaşır.',
+    'pipe-2-h'        : 'AI 3sn\'de algılar',
+    'pipe-2-p'        : 'Yapay zeka mesajın amacını anlar. Randevu mu, fiyat mı, bilgi mi? Otomatik yönlendirir.',
+    'pipe-3-h'        : 'Flow formu açılır',
+    'pipe-3-p'        : 'Müşteri WhatsApp\'ın içinde interaktif formu doldurur. Dış link yok, uygulama değişmiyor.',
+    'pipe-4-h'        : 'Otomatik kaydedilir',
+    'pipe-4-p'        : 'Randevu oluşur, onay gider, takvime işlenir. Siz sadece dashboard\'dan takip edersiniz.',
+    'phb-pill'        : 'Rakiplerin sunamadığı özellik',
+    'phb-text'        : 'Müşteri WhatsApp\'tan hiç çıkmaz — dış link yok, browser açılmıyor. Dönüşüm oranı standart yönlendirmeli sistemlere kıyasla çok daha yüksek.',
+    'fav-tag'         : 'WhatsApp Flow',
+    'fav-h2'          : 'Form doldurmak<br><em>bu kadar kolay</em>',
+    'fav-lead'        : 'Müşteriniz tek bir mesajla süreci başlatır; randevusunu alır, rezervasyonunu yapar veya teklifini ister — WhatsApp\'ı kapatmadan.',
+    'fav-p1-h'        : 'Dış link yok',
+    'fav-p1-p'        : 'Form WhatsApp içinde açılır. Müşteri hiçbir zaman uygulamadan çıkmaz.',
+    'fav-p2-h'        : 'Anında onay',
+    'fav-p2-p'        : 'Form gönderildiği anda sistem randevuyu oluşturur ve onay mesajı gönderir.',
+    'fav-p3-h'        : 'Meta\'nın resmi teknolojisi',
+    'fav-p3-p'        : 'WhatsApp Flow, Meta\'nın işletmeler için geliştirdiği resmi API özelliğidir. Güvenilir ve hızlı.',
+    'fav-p4-h'        : 'Her sektöre özel',
+    'fav-p4-p'        : 'Klinik, restoran, güzellik salonu, oto servis — her işletme için özelleştirilmiş flow şablonları.',
+    'fav-fc-title'    : 'Randevu Formu',
+    'fav-fc-sub'      : 'Tarih ve saat seçin',
+    'fav-fc-btn'      : 'Formu Aç →',
+    'fav-footer'      : 'Yanıt süresi: <strong>2.8 saniye</strong>',
+    'db-tag'          : 'Canlı Dashboard',
+    'db-h2'           : 'Tüm operasyonunuz<br><em>tek ekranda</em>',
+    'db-lead'         : 'Gelen mesajlar, randevular, doluluk oranı — hepsi anlık olarak takibinizde. Karar almak için rapor beklemenize gerek yok.',
+    'db-p1-h'         : 'Canlı randevu takvimi',
+    'db-p1-p'         : 'Günlük ve haftalık görünüm. Kimin ne zaman geleceğini tek bakışta görün.',
+    'db-p2-h'         : 'Anlık istatistikler',
+    'db-p2-p'         : 'Bugünkü rezervasyon sayısı, doluluk oranı ve ortalama yanıt süresi.',
+    'db-p3-h'         : 'Rezervasyon detayları',
+    'db-p3-p'         : 'Her rezervasyonun müşteri bilgisi, notu ve durumu tek panelde.',
     'ai-tag'          : 'Yapay Zeka ile İletişim',
     'ai-h2'           : 'Müşteriniz yazar,<br><em>AI hemen yanıtlar</em>',
     'ai-desc'         : 'Standart otomatik mesajların çok ötesinde. Qavio\'nun yapay zekası müşterilerinizin ne dediğini değil, <strong>ne demek istediğini</strong> anlar — ve saniyeler içinde doğru yanıtı gönderir. Siz uyurken bile.',
@@ -39,9 +82,9 @@ const LANGS = {
     'demo-desc'       : 'Standart chatbot\'ların çok ötesinde. WhatsApp Flow teknolojisiyle müşterileriniz uygulamadan çıkmadan form dolduruyor, randevu seçiyor.',
     'step-01-h3'      : 'Yapay Zeka ile<br><em>Anında Karşılama</em>',
     'step-01-p'       : 'Müşteriniz WhatsApp\'tan mesaj attığında sistem 3 saniye içinde yanıt verir. "Randevu", "fiyat", "bilgi" gibi niyet kelimelerini AI otomatik algılar ve doğru akışa yönlendirir.',
-    'step-01-pills'   : '<span class="pill">🤖 Müşteriyi anlayan AI</span><span class="pill">⚡ 3s yanıt</span><span class="pill">🌐 TR &amp; EN destekli</span>',
+    'step-01-pills'   : '<span class="pill">🤖 Müşteriyi anlayan AI</span><span class="pill">⚡ 3s yanıt</span><span class="pill">🌐 Çoklu dil desteği</span>',
     'step-02-h3'      : 'WhatsApp Flow ile<br><em>Randevu Akışı</em>',
-    'step-02-p'       : 'Rakiplerin sunamadığı özellik: WhatsApp uygulamasından çıkmadan interaktif randevu formu. Müşteri isim, tarih ve saat seçiyor — siz dashboard\'da anlık görüyorsunuz.',
+    'step-02-p'       : 'WhatsApp uygulamasından çıkmadan interaktif randevu formu. Müşteri isim, tarih ve saat seçiyor — siz dashboard\'da anlık görüyorsunuz.',
     'step-02-pills'   : '<span class="pill">📱 Uygulama içi form</span><span class="pill">📅 Tarih-saat seçici</span><span class="pill">✅ Anında onay</span>',
     'step-03-h3'      : 'Otomatik Teklif<br><em>&amp; Fiyat Akışı</em>',
     'step-03-p'       : 'Müşteri "fiyat nedir?" dediğinde sistem otomatik teklif formunu açar. Hizmet türü, bütçe ve iletişim bilgilerini toplar. Siz sadece hazır teklifi onaylarsınız.',
@@ -97,26 +140,27 @@ const LANGS = {
     'tog-yearly'      : 'Yıllık',
     'tog-save'        : '%20 İndirim',
     'plan-per'        : '/mo',
-    'plan-1-yearly'   : '$149/yıl · $79 tasarruf',
-    'plan-1-f1'       : 'Otomatik karşılama mesajı',
-    'plan-1-f2'       : 'Randevu Flow (hazır şablon)',
-    'plan-1-f3'       : 'WhatsApp Business API kurulumu',
-    'plan-1-f4'       : '3.000 mesaj/ay',
-    'plan-1-f5'       : '1 kullanıcı · E-posta destek',
+    'plan-1-yearly'   : '$470/yıl · $118 tasarruf',
+    'plan-1-f1'       : 'WhatsApp Business API kurulumu',
+    'plan-1-f2'       : 'AI chatbot — her müşteriyi otomatik yönlendirir',
+    'plan-1-f3'       : 'WhatsApp üzerinden randevu alma',
+    'plan-1-f4'       : 'Canlı dashboard - müşteri &amp; randevu listesi',
+    'plan-1-f5'       : '1 WhatsApp numarası',
     'plan-2-badge'    : 'En Popüler',
-    'plan-2-yearly'   : '$389/yıl · $199 tasarruf',
+    'plan-2-yearly'   : '$950/yıl · $238 tasarruf',
     'plan-2-f1'       : 'Starter\'daki her şey',
-    'plan-2-f2'       : '<strong>AI intent algılama</strong> (TR/EN)',
-    'plan-2-f3'       : 'Teklif &amp; fiyat Flow\'u',
-    'plan-2-f4'       : 'Canlı dashboard &amp; takvim',
-    'plan-2-f5'       : '10.000 mesaj/ay · 3 kullanıcı',
-    'plan-2-f6'       : 'Chatbot &amp; otomasyon',
-    'plan-3-yearly'   : '$990/yıl · $558 tasarruf',
+    'plan-2-f2'       : '3 otomasyon senaryosu — siz seçin',
+    'plan-2-f2a'      : 'Kampanya &amp; özel teklif sunumu',
+    'plan-2-f2b'      : 'Ziyaret sonrası memnuniyet anketi',
+    'plan-2-f2c'      : 'Ziyaret öncesi bilgi toplama',
+    'plan-2-f3'       : 'İşletmenize özel akıllı AI yanıtları',
+    'plan-3-yearly'   : '$1.910/yıl · $478 tasarruf',
     'plan-3-f1'       : 'Growth\'taki her şey',
-    'plan-3-f2'       : 'Özel ön değerlendirme Flow\'u',
-    'plan-3-f3'       : 'API erişimi &amp; veri entegrasyonu',
-    'plan-3-f4'       : '40.000 mesaj/ay · 10 kullanıcı',
-    'plan-3-f5'       : 'GDPR/KVKK uyumlu · Sınırsız şablon',
+    'plan-3-f2'       : 'Sınırsız otomasyon senaryosu',
+    'plan-3-f3'       : 'Gönderilen formda özel alanlar',
+    'plan-3-f3a'      : 'Sigorta bilgisi, tercih edilen doktor ve daha fazlası',
+    'plan-3-f4'       : 'Birden fazla WhatsApp numarası',
+    'plan-3-f5'       : 'Kişisel kurulum görüşmesi',
     'plan-3-f6'       : 'Öncelikli destek',
     'plan-cta'        : 'Demo İste',
     'price-note'      : '7 günlük ücretsiz deneme &nbsp;·&nbsp; Kredi kartı gerekmez &nbsp;·&nbsp; İstediğin zaman iptal',
@@ -182,65 +226,11 @@ const LANGS = {
         {name:'Fatma Kaya', time:'14:00 · Kaş Ekimi',   badge:'Onaylı', dotCls:'dot-g', badgeCls:'bg-g'},
       ],
     },
-    /* AI demo chat */
-    'ai-demo': {
-      u1:          'Rezervasyon yapmak istiyorum 🍽️',
-      b1:          'Merhaba! 😊 Rezervasyon formunu açın:',
-      fCardTitle:  'Rezervasyon Formu',
-      fCardSub:    'Kişi sayısı, tarih ve saat seçin',
-      fCardBtn:    'Formu Aç →',
-      fBarTitle:   '📅 Rezervasyon',
-      fH1:         'Rezervasyon Bilgileri',
-      fSub:        'Formu doldurun, hemen onaylayalım',
-      fLbl1:       'Kişi Sayısı',
-      fSize:       ['👤 2','👥 4','🎉 6+'], fSizeSel: 1,
-      fLbl2:       'Tarih',
-      fDates:      ['Sal','Çar','Per','Cum'], fDays:['20','21','22','23'], fDateSel: 1,
-      fLbl3:       'Saat',
-      fTimes:      ['19:00','20:00','21:00'], fTimeSel: 1,
-      fSubmit:     'Rezervasyonu Onayla ✓',
-      fBizLoc:     'Qavio AI · Masa Rezervasyonu',
-      b2:          'Rezervasyonunuz onaylandı! 🎉<br><strong>Bu akşam 20:00 · 4 kişilik</strong> masa sizi bekliyor.<br>İyi akşamlar! 🍷',
-    },
-    /* Demo section phone slides */
-    'demo-slide-0': {
-      waStatus:'çevrimiçi',
-      msgOut1:'Merhaba 👋',
-      msgIn1:'Merhaba! Hoş geldiniz 😊',
-      msgIn1sub:'Nasıl yardımcı olabilirim?',
-      btn1:'📅 Randevu Al', btn2:'💰 Fiyat Öğren', btn3:'ℹ️ Bilgi Al',
-      msgOut2:'Randevu istiyorum',
-      msgIn2:'Harika! Randevu formunu doldurabilirsiniz.',
-      inp:'Mesaj yazın...',
-    },
-    'demo-slide-1': {
-      barTitle:'📅 Randevu Al',
-      title:'Randevu Bilgileri', sub:'Formu doldurun, hemen onaylayalım',
-      lblName:'Adınız Soyadınız', valName:'Ahmet Yılmaz',
-      lblSvc:'Hizmet', valSvc:'Saç Ekimi Konsültasyon',
-      lblDate:'Tarih', lblTime:'Saat',
-      dates:['Sal','Çar','Per','Cum'], dateDays:['20','21','22','23'],
-      times:['10:00','11:30','14:00'],
-      btn:'Randevuyu Onayla ✓',
-    },
-    'demo-slide-2': {
-      barTitle:'💰 Teklif İste',
-      title:'Fiyat Teklifi', sub:'Bilgileri girin, 2 saat içinde dönelim',
-      lblName:'Adınız', valName:'Mehmet Kaya',
-      lblSvc:'İlgilendiğiniz Hizmet',
-      svc1:'Saç Ekimi (FUE)', svc2:'Sakal Ekimi', svc3:'Kaş Ekimi',
-      lblBudget:'Bütçe', btn:'Teklif İste →',
-    },
-    'demo-slide-3': {
-      title:'📊 Canlı Dashboard', date:'21 Mayıs 2026',
-      lbl1:'Bugün mesaj', lbl2:'Randevu', lbl3:'Otomasyon', lbl4:'Ort. yanıt',
-      section:'Bugünkü Randevular',
-      rows:[
-        {name:'Ayşe Demir', time:'10:00 · Konsültasyon', badge:'Onaylı',  dotCls:'dot-g', badgeCls:'bg-g'},
-        {name:'Emre Çelik', time:'11:30 · FUE Saç',      badge:'Bekliyor',dotCls:'dot-y', badgeCls:'bg-y'},
-        {name:'Fatma Kaya', time:'14:00 · Kaş Ekimi',    badge:'Onaylı',  dotCls:'dot-g', badgeCls:'bg-g'},
-      ],
-    },
+    'hamburger-aria'   : 'Menü',
+    'mmenu-close-aria' : 'Kapat',
+    'marquee-track-aria': 'Qavio özellik bandı',
+    'dashboard-1-alt'  : 'Qavio Dashboard rezervasyon listesi görünümü',
+    'dashboard-2-alt'  : 'Qavio Dashboard takvim görünümü',
   },
 
   en: {
@@ -256,11 +246,54 @@ const LANGS = {
     'hero-btn-demo'   : 'Get Demo <span>→</span>',
     'hero-btn-how'    : 'How It Works?',
     'hero-note'       : '20+ businesses &nbsp;·&nbsp; ⭐ 4.9 rating',
+    'sector-tabs-label': 'Choose your sector',
+    'st-klinik'       : 'Clinic',
+    'st-restoran'     : 'Restaurant',
+    'st-guzellik'     : 'Beauty',
+    'st-servis'       : 'Auto Service',
+    'st-emlak'        : 'Real Estate',
     'marquee-text'    : 'WhatsApp Flow <span class="ms">·</span> AI Intent Detection <span class="ms">·</span> Live Dashboard <span class="ms">·</span> 24/7 Active <span class="ms">·</span> Appointment Automation <span class="ms">·</span> GDPR Compliant <span class="ms">·</span> Full Support <span class="ms">·</span> Setup Included <span class="ms">·</span>',
     'stat-1'          : 'Always active, non-stop',
     'stat-2'          : 'Average response time',
     'stat-3'          : 'Message automation rate',
     'stat-4'          : 'Cost per incoming reply',
+    'pipe-tag'        : 'How It Works',
+    'pipe-h2'         : 'End-to-end automation,<br><em>all inside WhatsApp</em>',
+    'pipe-desc'       : 'With WhatsApp Flow, your customer books appointments, makes reservations and requests quotes without ever leaving the app — 24/7, even while you sleep.',
+    'pipe-1-h'        : 'Customer writes',
+    'pipe-1-p'        : 'Every WhatsApp message — short, long, with typos — reaches the system instantly.',
+    'pipe-2-h'        : 'AI detects in 3s',
+    'pipe-2-p'        : 'AI understands the intent. Appointment? Price? Info? Routes automatically.',
+    'pipe-3-h'        : 'Flow form opens',
+    'pipe-3-p'        : 'Customer fills an interactive form inside WhatsApp. No external links, no app switching.',
+    'pipe-4-h'        : 'Auto-saved',
+    'pipe-4-p'        : 'Appointment is created, confirmation sent, calendar updated. You just check the dashboard.',
+    'phb-pill'        : 'What competitors can\'t offer',
+    'phb-text'        : 'The customer never leaves WhatsApp — no external links, no browser. Conversion rates are significantly higher compared to redirect-based systems.',
+    'fav-tag'         : 'WhatsApp Flow',
+    'fav-h2'          : 'Filling a form<br><em>this easy</em>',
+    'fav-lead'        : 'Your customer starts the process with a single message and books an appointment, makes a reservation or requests a quote — without closing WhatsApp.',
+    'fav-p1-h'        : 'No external links',
+    'fav-p1-p'        : 'The form opens inside WhatsApp. The customer never leaves the app.',
+    'fav-p2-h'        : 'Instant confirmation',
+    'fav-p2-p'        : 'The moment the form is submitted, the system creates the booking and sends a confirmation.',
+    'fav-p3-h'        : 'Official Meta technology',
+    'fav-p3-p'        : 'WhatsApp Flow is Meta\'s official API feature built for businesses. Reliable and fast.',
+    'fav-p4-h'        : 'Custom per sector',
+    'fav-p4-p'        : 'Clinic, restaurant, beauty salon, auto service — customized flow templates for every business type.',
+    'fav-fc-title'    : 'Appointment Form',
+    'fav-fc-sub'      : 'Pick a date and time',
+    'fav-fc-btn'      : 'Open Form →',
+    'fav-footer'      : 'Response time: <strong>2.8 seconds</strong>',
+    'db-tag'          : 'Live Dashboard',
+    'db-h2'           : 'Your entire operation<br><em>on one screen</em>',
+    'db-lead'         : 'Messages, appointments, occupancy rate — all tracked in real time. No waiting for reports to make decisions.',
+    'db-p1-h'         : 'Live appointment calendar',
+    'db-p1-p'         : 'Daily and weekly views. See who is coming and when at a glance.',
+    'db-p2-h'         : 'Real-time stats',
+    'db-p2-p'         : 'Today\'s reservation count, occupancy rate and average response time.',
+    'db-p3-h'         : 'Reservation details',
+    'db-p3-p'         : 'Customer info, notes and status for every booking in one panel.',
     'ai-tag'          : 'AI-Powered Communication',
     'ai-h2'           : 'Customer writes,<br><em>AI instantly replies</em>',
     'ai-desc'         : 'Far beyond standard auto-messages. Qavio\'s AI understands not what your customers <strong>say</strong>, but what they <strong>mean</strong> — and sends the right reply in seconds. Even while you sleep.',
@@ -278,9 +311,9 @@ const LANGS = {
     'demo-desc'       : 'Far beyond standard chatbots. With WhatsApp Flow technology, your customers fill out forms and book appointments without leaving the app.',
     'step-01-h3'      : 'AI-Powered<br><em>Instant Welcome</em>',
     'step-01-p'       : 'When your customer messages on WhatsApp, the system responds within 3 seconds. AI automatically detects intent keywords like "appointment", "price", "info" and routes to the right flow.',
-    'step-01-pills'   : '<span class="pill">🤖 AI that understands customers</span><span class="pill">⚡ 3s response</span><span class="pill">🌐 TR &amp; EN support</span>',
+    'step-01-pills'   : '<span class="pill">🤖 AI that understands customers</span><span class="pill">⚡ 3s response</span><span class="pill">🌐 Multi-language support</span>',
     'step-02-h3'      : 'WhatsApp Flow for<br><em>Appointments</em>',
-    'step-02-p'       : 'The feature competitors can\'t offer: interactive appointment form without leaving WhatsApp. Customer selects name, date, and time — you see it instantly in the dashboard.',
+    'step-02-p'       : 'Interactive appointment form without leaving WhatsApp. Customer selects name, date, and time — you see it instantly in the dashboard.',
     'step-02-pills'   : '<span class="pill">📱 In-app form</span><span class="pill">📅 Date-time picker</span><span class="pill">✅ Instant confirm</span>',
     'step-03-h3'      : 'Automated Quote<br><em>&amp; Pricing Flow</em>',
     'step-03-p'       : 'When a customer asks "what\'s the price?", the system automatically opens the quote form. Collects service type, budget, and contact info. You just approve the ready quote.',
@@ -336,26 +369,27 @@ const LANGS = {
     'tog-yearly'      : 'Yearly',
     'tog-save'        : '20% Off',
     'plan-per'        : '/mo',
-    'plan-1-yearly'   : '$149/yr · save $79',
-    'plan-1-f1'       : 'Automatic welcome message',
-    'plan-1-f2'       : 'Appointment Flow (ready template)',
-    'plan-1-f3'       : 'WhatsApp Business API setup',
-    'plan-1-f4'       : '3,000 messages/mo',
-    'plan-1-f5'       : '1 user · Email support',
+    'plan-1-yearly'   : '$470/yr · save $118',
+    'plan-1-f1'       : 'WhatsApp Business API setup',
+    'plan-1-f2'       : 'AI chatbot — auto-routes every customer',
+    'plan-1-f3'       : 'Appointment booking via WhatsApp',
+    'plan-1-f4'       : 'Live dashboard - customer &amp; appointment list',
+    'plan-1-f5'       : '1 WhatsApp number',
     'plan-2-badge'    : 'Most Popular',
-    'plan-2-yearly'   : '$389/yr · save $199',
+    'plan-2-yearly'   : '$950/yr · save $238',
     'plan-2-f1'       : 'Everything in Starter',
-    'plan-2-f2'       : '<strong>AI intent detection</strong> (TR/EN)',
-    'plan-2-f3'       : 'Quote &amp; pricing Flow',
-    'plan-2-f4'       : 'Live dashboard &amp; calendar',
-    'plan-2-f5'       : '10,000 messages/mo · 3 users',
-    'plan-2-f6'       : 'Chatbot &amp; automation',
-    'plan-3-yearly'   : '$990/yr · save $558',
+    'plan-2-f2'       : '3 automation scenarios — your choice',
+    'plan-2-f2a'      : 'Campaign &amp; special offer presentation',
+    'plan-2-f2b'      : 'Post-visit satisfaction survey',
+    'plan-2-f2c'      : 'Pre-visit intake &amp; info collection',
+    'plan-2-f3'       : 'Smart AI replies, company-specific',
+    'plan-3-yearly'   : '$1,910/yr · save $478',
     'plan-3-f1'       : 'Everything in Growth',
-    'plan-3-f2'       : 'Custom pre-evaluation Flow',
-    'plan-3-f3'       : 'API access &amp; data integration',
-    'plan-3-f4'       : '40,000 messages/mo · 10 users',
-    'plan-3-f5'       : 'GDPR/KVKK compliant · Unlimited templates',
+    'plan-3-f2'       : 'Unlimited automation scenarios',
+    'plan-3-f3'       : 'Custom fields in any submitted form',
+    'plan-3-f3a'      : 'Insurance info, preferred doctor &amp; more',
+    'plan-3-f4'       : 'Multiple WhatsApp numbers',
+    'plan-3-f5'       : 'Personal onboarding session',
     'plan-3-f6'       : 'Priority support',
     'plan-cta'        : 'Get Demo',
     'price-note'      : '7-day free trial &nbsp;·&nbsp; No credit card required &nbsp;·&nbsp; Cancel anytime',
@@ -421,70 +455,16 @@ const LANGS = {
         {name:'Sophia Davis',  time:'14:00 · Eyebrow',      badge:'Confirmed', dotCls:'dot-g', badgeCls:'bg-g'},
       ],
     },
-    /* AI demo chat */
-    'ai-demo': {
-      u1:          'I\'d like to make a reservation 🍽️',
-      b1:          'Hello! 😊 Please open the reservation form:',
-      fCardTitle:  'Reservation Form',
-      fCardSub:    'Select party size, date and time',
-      fCardBtn:    'Open Form →',
-      fBarTitle:   '📅 Reservation',
-      fH1:         'Reservation Details',
-      fSub:        'Fill in the form, we\'ll confirm right away',
-      fLbl1:       'Party Size',
-      fSize:       ['👤 2','👥 4','🎉 6+'], fSizeSel: 1,
-      fLbl2:       'Date',
-      fDates:      ['Tue','Wed','Thu','Fri'], fDays:['20','21','22','23'], fDateSel: 1,
-      fLbl3:       'Time',
-      fTimes:      ['7:00 PM','8:00 PM','9:00 PM'], fTimeSel: 1,
-      fSubmit:     'Confirm Reservation ✓',
-      fBizLoc:     'Qavio AI · Table Reservation',
-      b2:          'Reservation confirmed! 🎉<br><strong>Tonight at 8:00 PM · Table for 4</strong> is ready.<br>Enjoy your evening! 🍷',
-    },
-    /* Demo section phone slides */
-    'demo-slide-0': {
-      waStatus:'online',
-      msgOut1:'Hello 👋',
-      msgIn1:'Hello! Welcome 😊',
-      msgIn1sub:'How can I help you?',
-      btn1:'📅 Book Appointment', btn2:'💰 Get Quote', btn3:'ℹ️ Get Info',
-      msgOut2:'I want to make an appointment',
-      msgIn2:'Great! Please fill in the appointment form.',
-      inp:'Type a message...',
-    },
-    'demo-slide-1': {
-      barTitle:'📅 Book Appointment',
-      title:'Appointment Details', sub:'Fill in the form, we\'ll confirm right away',
-      lblName:'Full Name', valName:'John Doe',
-      lblSvc:'Service', valSvc:'Hair Transplant Consultation',
-      lblDate:'Date', lblTime:'Time',
-      dates:['Tue','Wed','Thu','Fri'], dateDays:['20','21','22','23'],
-      times:['10:00','11:30','14:00'],
-      btn:'Confirm Appointment ✓',
-    },
-    'demo-slide-2': {
-      barTitle:'💰 Get Quote',
-      title:'Price Quote', sub:'Fill in details, we\'ll reply within 2 hours',
-      lblName:'Your Name', valName:'John Smith',
-      lblSvc:'Service of Interest',
-      svc1:'Hair Transplant (FUE)', svc2:'Beard Transplant', svc3:'Eyebrow Transplant',
-      lblBudget:'Budget', btn:'Request Quote →',
-    },
-    'demo-slide-3': {
-      title:'📊 Live Dashboard', date:'May 21, 2026',
-      lbl1:'Today\'s messages', lbl2:'Appointments', lbl3:'Automation', lbl4:'Avg. response',
-      section:'Today\'s Appointments',
-      rows:[
-        {name:'Emma Johnson', time:'10:00 · Consultation', badge:'Confirmed', dotCls:'dot-g', badgeCls:'bg-g'},
-        {name:'James Smith',  time:'11:30 · FUE Hair',     badge:'Pending',   dotCls:'dot-y', badgeCls:'bg-y'},
-        {name:'Sophia Davis', time:'14:00 · Eyebrow',      badge:'Confirmed', dotCls:'dot-g', badgeCls:'bg-g'},
-      ],
-    },
+    'hamburger-aria'   : 'Menu',
+    'mmenu-close-aria' : 'Close',
+    'marquee-track-aria': 'Qavio feature band',
+    'dashboard-1-alt'  : 'Qavio Dashboard reservation list view',
+    'dashboard-2-alt'  : 'Qavio Dashboard calendar view',
   },
 };
 
 /* ─── Core ─────────────────────────────────────────────────── */
-let currentLang = localStorage.getItem('qavio-lang') || 'tr';
+let currentLang = localStorage.getItem('qavio-lang') || 'en';
 
 function t(key) { return LANGS[currentLang][key] ?? LANGS.tr[key] ?? key; }
 
@@ -510,6 +490,18 @@ function applyLang(lang) {
     if (v) el.placeholder = v;
   });
 
+  /* aria-labels */
+  document.querySelectorAll('[data-i18n-aria]').forEach(el => {
+    const v = t(el.dataset.i18nAria);
+    if (v) el.setAttribute('aria-label', v);
+  });
+
+  /* image alt text */
+  document.querySelectorAll('[data-i18n-alt]').forEach(el => {
+    const v = t(el.dataset.i18nAlt);
+    if (v) el.setAttribute('alt', v);
+  });
+
   /* select options */
   const sel = document.querySelector('[name="sector"]');
   if (sel) {
@@ -525,12 +517,6 @@ function applyLang(lang) {
 
   /* pscreens */
   renderPscreens();
-
-  /* demo section phone slides */
-  renderDemoSlides();
-
-  /* ai demo */
-  renderAiDemo();
 
   /* dropdown: update current label (desktop + mobile) + active states */
   document.querySelectorAll('.js-lang-current').forEach(el => el.textContent = lang.toUpperCase());
@@ -613,173 +599,6 @@ function renderPscreens() {
   }
 }
 
-/* ─── Demo Slides renderer ──────────────────────────────────── */
-function renderDemoSlides() {
-  const phone = document.getElementById('demo-phone');
-  if (!phone) return;
-  const slides = phone.querySelectorAll('.phone-slide');
-  if (slides.length < 4) return;
-
-  /* — Slide 0: Chat — */
-  const s0 = t('demo-slide-0');
-  const sl0 = slides[0];
-  const waSt = sl0.querySelector('.wa-st');
-  if (waSt) waSt.textContent = s0.waStatus;
-  const msgs = sl0.querySelectorAll('.wa-msgs .msg');
-  /* msg[0] = user "Merhaba 👋", msg[1] = bot with buttons, msg[2] = user reply, msg[3] = bot reply */
-  if (msgs[0]) {
-    const tn = msgs[0].firstChild;
-    if (tn && tn.nodeType === 3) tn.textContent = s0.msgOut1;
-  }
-  if (msgs[1]) {
-    const mt = msgs[1].querySelector('.msg-t');
-    const timeHTML = mt ? mt.outerHTML : '<div class="msg-t">14:23</div>';
-    msgs[1].innerHTML =
-      s0.msgIn1 + '<br><br>' + s0.msgIn1sub +
-      '<div class="msg-btns">' +
-        `<div class="msg-btn">${s0.btn1}</div>` +
-        `<div class="msg-btn">${s0.btn2}</div>` +
-        `<div class="msg-btn">${s0.btn3}</div>` +
-      '</div>' + timeHTML;
-  }
-  if (msgs[2]) {
-    const tn = msgs[2].firstChild;
-    if (tn && tn.nodeType === 3) tn.textContent = s0.msgOut2;
-  }
-  if (msgs[3]) {
-    const mt = msgs[3].querySelector('.msg-t');
-    const timeHTML = mt ? mt.outerHTML : '<div class="msg-t">14:24</div>';
-    msgs[3].innerHTML = s0.msgIn2 + timeHTML;
-  }
-  const inp = sl0.querySelector('.wa-inp');
-  if (inp) inp.textContent = s0.inp;
-
-  /* — Slide 1: Appointment Flow — */
-  const s1 = t('demo-slide-1');
-  const sl1 = slides[1];
-  const ft = sl1.querySelector('.flow-bar-t'); if (ft) ft.textContent = s1.barTitle;
-  const fh1 = sl1.querySelector('.flow-h1');  if (fh1) fh1.textContent = s1.title;
-  const fsub = sl1.querySelector('.flow-sub'); if (fsub) fsub.textContent = s1.sub;
-  const lbls1 = sl1.querySelectorAll('.flow-lbl');
-  if (lbls1[0]) lbls1[0].textContent = s1.lblName;
-  if (lbls1[1]) lbls1[1].textContent = s1.lblSvc;
-  if (lbls1[2]) lbls1[2].textContent = s1.lblDate;
-  if (lbls1[3]) lbls1[3].textContent = s1.lblTime;
-  const vals1 = sl1.querySelectorAll('.flow-val');
-  if (vals1[0]) vals1[0].textContent = s1.valName;
-  if (vals1[1]) vals1[1].textContent = s1.valSvc;
-  const chips1 = sl1.querySelectorAll('.date-chip:not(.time-chip)');
-  s1.dates.forEach((d, i) => {
-    if (chips1[i]) chips1[i].innerHTML = d + '<br><b>' + s1.dateDays[i] + '</b>';
-  });
-  const fbtn1 = sl1.querySelector('.flow-btn-gr'); if (fbtn1) fbtn1.textContent = s1.btn;
-
-  /* — Slide 2: Quote Flow — */
-  const s2 = t('demo-slide-2');
-  const sl2 = slides[2];
-  const ft2 = sl2.querySelector('.flow-bar-t'); if (ft2) ft2.textContent = s2.barTitle;
-  const fh2 = sl2.querySelector('.flow-h1');   if (fh2) fh2.textContent = s2.title;
-  const fs2 = sl2.querySelector('.flow-sub');  if (fs2) fs2.textContent = s2.sub;
-  const lbls2 = sl2.querySelectorAll('.flow-lbl');
-  if (lbls2[0]) lbls2[0].textContent = s2.lblName;
-  if (lbls2[1]) lbls2[1].textContent = s2.lblSvc;
-  if (lbls2[2]) lbls2[2].textContent = s2.lblBudget;
-  const nameVal = sl2.querySelector('.flow-val'); if (nameVal) nameVal.textContent = s2.valName;
-  const svcItems = sl2.querySelectorAll('[style*="DCFCE7"], [style*="10.5px"]');
-  if (svcItems[0]) svcItems[0].textContent = '✓ ' + s2.svc1;
-  if (svcItems[1]) svcItems[1].textContent = s2.svc2;
-  if (svcItems[2]) svcItems[2].textContent = s2.svc3;
-  const fbtn2 = sl2.querySelector('.flow-btn-gr'); if (fbtn2) fbtn2.textContent = s2.btn;
-
-  /* — Slide 3: Dashboard — */
-  const s3 = t('demo-slide-3');
-  const sl3 = slides[3];
-  const dt = sl3.querySelector('.dash-t'); if (dt) dt.textContent = s3.title;
-  const dd = sl3.querySelector('.dash-d'); if (dd) dd.textContent = s3.date;
-  const dlbls = sl3.querySelectorAll('.dash-lbl');
-  [s3.lbl1, s3.lbl2, s3.lbl3, s3.lbl4].forEach((l, i) => { if (dlbls[i]) dlbls[i].textContent = l; });
-  const dsec = sl3.querySelector('.dash-sec'); if (dsec) dsec.textContent = s3.section;
-  const drows = sl3.querySelectorAll('.dash-row');
-  s3.rows.forEach((r, i) => {
-    if (!drows[i]) return;
-    drows[i].querySelector('.dash-dot').className = 'dash-dot ' + r.dotCls;
-    drows[i].querySelector('.dash-rn').textContent = r.name;
-    drows[i].querySelector('.dash-rt').textContent = r.time;
-    const badge = drows[i].querySelector('.dash-badge');
-    badge.className = 'dash-badge ' + r.badgeCls;
-    badge.textContent = r.badge;
-  });
-}
-
-/* ─── AI Demo renderer ──────────────────────────────────────── */
-function renderAiDemo() {
-  const d       = t('ai-demo');
-  const wrap    = document.getElementById('ai-demo-msgs');
-  const overlay = document.getElementById('ai-flow-overlay');
-  if (!wrap) return;
-
-  const msgs = wrap.querySelectorAll('.ai-msg');
-  const [u1, botCard, botConfirm] = msgs;
-
-  /* user message */
-  if (u1) u1.textContent = d.u1;
-
-  /* bot: WhatsApp Flow card message */
-  if (botCard) {
-    const label = botCard.querySelector('.ai-msg-label');
-    if (label) label.textContent = t('ai-chat-name');
-    const intro = botCard.querySelector('.afm-intro');
-    if (intro) intro.textContent = d.b1;
-    const title = botCard.querySelector('.afmc-title');
-    if (title) title.textContent = d.fCardTitle;
-    const sub = botCard.querySelector('.afmc-sub');
-    if (sub) sub.textContent = d.fCardSub;
-    const btn = botCard.querySelector('.afmc-btn');
-    if (btn) btn.textContent = d.fCardBtn;
-  }
-
-  /* flow overlay content */
-  if (overlay) {
-    const bizName = overlay.querySelector('.afo-biz-name');
-    if (bizName) bizName.textContent = t('ai-chat-name');
-    const bizLoc = overlay.querySelector('.afo-biz-loc');
-    if (bizLoc) bizLoc.textContent = d.fBizLoc;
-    const barT = overlay.querySelector('.flow-bar-t');
-    if (barT) barT.textContent = d.fBarTitle;
-    const h1 = overlay.querySelector('.flow-h1');
-    if (h1) h1.textContent = d.fH1;
-    const flowSub = overlay.querySelector('.flow-sub');
-    if (flowSub) flowSub.textContent = d.fSub;
-    const lbls = overlay.querySelectorAll('.flow-lbl');
-    if (lbls[0]) lbls[0].textContent = d.fLbl1;
-    if (lbls[1]) lbls[1].textContent = d.fLbl2;
-    if (lbls[2]) lbls[2].textContent = d.fLbl3;
-    const rows = overlay.querySelectorAll('.date-row');
-    if (rows[0]) rows[0].innerHTML = d.fSize.map(s =>
-      `<div class="date-chip">${s}</div>`).join('');
-    if (rows[1]) rows[1].innerHTML = d.fDates.map((dt, i) =>
-      `<div class="date-chip">${dt}<br><b>${d.fDays[i]}</b></div>`).join('');
-    if (rows[2]) rows[2].innerHTML = d.fTimes.map(tm =>
-      `<div class="date-chip time-chip">${tm}</div>`).join('');
-    const submitBtn = document.getElementById('afo-submit');
-    if (submitBtn) submitBtn.textContent = d.fSubmit;
-  }
-
-  /* confirmation message */
-  if (botConfirm) {
-    const label = botConfirm.querySelector('.ai-msg-label');
-    const lbl   = label ? label.outerHTML : '';
-    botConfirm.innerHTML = lbl + '<br>' + d.b2;
-  }
-
-  /* chat bar + footer */
-  const barName   = document.querySelector('.ai-chat-name');
-  const barStatus = document.querySelector('.ai-chat-status');
-  if (barName)   barName.textContent = t('ai-chat-name');
-  if (barStatus) barStatus.innerHTML = `<span class="ai-online-dot"></span>${t('ai-chat-status')}`;
-  const footer = document.querySelector('.ai-card-footer span[data-i18n="ai-footer"]');
-  if (footer) footer.innerHTML = t('ai-footer');
-}
 
 /* ─── Init ──────────────────────────────────────────────────── */
 document.addEventListener('DOMContentLoaded', () => {
