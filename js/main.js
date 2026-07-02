@@ -228,12 +228,153 @@ const SECTOR_DATA = {
   }
 };
 
+/* ─── SECTOR DATA (EN) ───────────────────────────────────── */
+const SECTOR_DATA_EN = {
+  klinik: {
+    greeting:    'Hello! 👋 Welcome to our clinic. How can I help you?',
+    buttons:     ['📅 Book Appointment', '💊 Treatment Info', '💰 Get Prices'],
+    customerMsg: 'I\'d like to book a consultation',
+    flowBadge:   '🗓️ APPOINTMENT FORM',
+    flowCardTxt: 'Please open the form to book...',
+    formTitle:   'Appointment Details',
+    formSub:     'Fill in the form, we\'ll confirm right away',
+    service:     'Hair Transplant Consultation',
+    dates:       [['Tue','20'],['Wed','21'],['Thu','22'],['Fri','23']],
+    times:       ['10:00','11:30','14:00'],
+    btn:         'Confirm Appointment ✓',
+    dash: {
+      stats: [
+        { count: 47, suffix: '',  label: 'Today\'s messages', trend: '↑ 23%' },
+        { count: 12, suffix: '',  label: 'Appointments',      trend: '↑ 8%'  },
+        { count: 91, suffix: '%', label: 'Automation',        trend: '✓ target' },
+        { text: '3s',             label: 'Avg. response',     trend: '✓'     },
+      ],
+      section: 'Today\'s Appointments',
+      rows: [
+        { name: 'Emma Johnson',  time: '10:00 · Consultation', badge: 'Confirmed', dot: 'dot-g', bg: 'bg-g' },
+        { name: 'James Smith',   time: '11:30 · FUE Hair',     badge: 'Pending',   dot: 'dot-y', bg: 'bg-y' },
+        { name: 'Sophia Davis',  time: '14:00 · Eyebrow',      badge: 'Confirmed', dot: 'dot-g', bg: 'bg-g' },
+      ]
+    }
+  },
+  restoran: {
+    greeting:    'Hello! 👋 Welcome. How can we help you today?',
+    buttons:     ['📅 Make Reservation', '🍽️ View Menu', '📍 Location & Hours'],
+    customerMsg: 'I\'d like to reserve a table for tonight',
+    flowBadge:   '🍽️ RESERVATION FORM',
+    flowCardTxt: 'Please open the form to reserve a table...',
+    formTitle:   'Table Reservation',
+    formSub:     'Select party size and time',
+    service:     '👥 Table for 4',
+    dates:       [['Sun','15'],['Mon','16'],['Tue','17'],['Wed','18']],
+    times:       ['19:00','20:00','21:00'],
+    btn:         'Confirm Reservation ✓',
+    dash: {
+      stats: [
+        { count: 63, suffix: '',  label: 'Today\'s messages', trend: '↑ 31%' },
+        { count: 18, suffix: '',  label: 'Reservations',      trend: '↑ 15%' },
+        { count: 94, suffix: '%', label: 'Automation',        trend: '✓ target' },
+        { text: '2s',             label: 'Avg. response',     trend: '✓'     },
+      ],
+      section: 'Today\'s Reservations',
+      rows: [
+        { name: 'Table 4',  time: '19:30 · 4 guests', badge: 'Confirmed', dot: 'dot-g', bg: 'bg-g' },
+        { name: 'Table 7',  time: '20:00 · 2 guests', badge: 'Pending',   dot: 'dot-y', bg: 'bg-y' },
+        { name: 'Table 12', time: '21:00 · 6 guests', badge: 'Confirmed', dot: 'dot-g', bg: 'bg-g' },
+      ]
+    }
+  },
+  guzellik: {
+    greeting:    'Hello! 👋 Welcome to our salon. What would you like?',
+    buttons:     ['📅 Book Session', '💅 Our Services', '💰 Price List'],
+    customerMsg: 'I\'d like to book a hair coloring session',
+    flowBadge:   '✂️ SESSION FORM',
+    flowCardTxt: 'Please open the form to book your session...',
+    formTitle:   'Beauty Session',
+    formSub:     'Choose your service and time',
+    service:     'Hair Coloring & Highlights',
+    dates:       [['Mon','16'],['Tue','17'],['Wed','18'],['Thu','19']],
+    times:       ['10:30','13:00','15:30'],
+    btn:         'Confirm Appointment ✓',
+    dash: {
+      stats: [
+        { count: 38, suffix: '',  label: 'Today\'s messages', trend: '↑ 17%' },
+        { count: 9,  suffix: '',  label: 'Sessions',          trend: '↑ 12%' },
+        { count: 89, suffix: '%', label: 'Automation',        trend: '✓ target' },
+        { text: '4s',             label: 'Avg. response',     trend: '✓'     },
+      ],
+      section: 'Today\'s Sessions',
+      rows: [
+        { name: 'Emma Wilson',  time: '10:30 · Hair Coloring',   badge: 'Confirmed', dot: 'dot-g', bg: 'bg-g' },
+        { name: 'Sarah Lee',    time: '13:00 · Manicure',        badge: 'Confirmed', dot: 'dot-g', bg: 'bg-g' },
+        { name: 'Mia Taylor',   time: '15:30 · Eyebrow Shaping', badge: 'Pending',   dot: 'dot-y', bg: 'bg-y' },
+      ]
+    }
+  },
+  servis: {
+    greeting:    'Hello! 👋 Welcome to our service center. How can we help your vehicle?',
+    buttons:     ['🔧 Book Service', '🚗 Vehicle Lookup', '💰 Get Quote'],
+    customerMsg: 'I\'d like to book a maintenance appointment',
+    flowBadge:   '🔧 SERVICE FORM',
+    flowCardTxt: 'Please open the form to book a service...',
+    formTitle:   'Vehicle Intake Form',
+    formSub:     'Enter details and we\'ll schedule your appointment',
+    service:     'Periodic Maintenance — 15,000 km',
+    dates:       [['Mon','16'],['Tue','17'],['Thu','19'],['Fri','20']],
+    times:       ['09:00','11:00','14:00'],
+    btn:         'Confirm Appointment ✓',
+    dash: {
+      stats: [
+        { count: 29, suffix: '',  label: 'Today\'s messages', trend: '↑ 11%' },
+        { count: 7,  suffix: '',  label: 'Vehicles',          trend: '↑ 6%'  },
+        { count: 88, suffix: '%', label: 'Automation',        trend: '✓ target' },
+        { text: '3s',             label: 'Avg. response',     trend: '✓'     },
+      ],
+      section: 'Today\'s Vehicles',
+      rows: [
+        { name: '34 ABC 123', time: '09:00 · Oil Change',    badge: 'Confirmed', dot: 'dot-g', bg: 'bg-g' },
+        { name: '06 XYZ 456', time: '11:00 · Brake Service', badge: 'Pending',   dot: 'dot-y', bg: 'bg-y' },
+        { name: '35 DEF 789', time: '14:00 · Tire Change',   badge: 'Confirmed', dot: 'dot-g', bg: 'bg-g' },
+      ]
+    }
+  },
+  emlak: {
+    greeting:    'Hello! 👋 Welcome. We\'re here to help you find your dream property!',
+    buttons:     ['🏠 Schedule Viewing', '🔍 View Listings', '📞 Talk to Agent'],
+    customerMsg: 'I\'d like info on a 3-bedroom apartment for sale',
+    flowBadge:   '🏠 VIEWING FORM',
+    flowCardTxt: 'Please open the form to schedule a viewing...',
+    formTitle:   'Viewing Appointment',
+    formSub:     'Choose your preferences and time',
+    service:     '3-Bed Apartment — Kadıköy',
+    dates:       [['Tue','17'],['Wed','18'],['Thu','19'],['Fri','20']],
+    times:       ['11:00','14:00','16:00'],
+    btn:         'Confirm Viewing ✓',
+    dash: {
+      stats: [
+        { count: 22, suffix: '',  label: 'Today\'s messages', trend: '↑ 9%' },
+        { count: 5,  suffix: '',  label: 'Viewings',          trend: '↑ 4%' },
+        { count: 85, suffix: '%', label: 'Automation',        trend: '✓ target' },
+        { text: '5s',             label: 'Avg. response',     trend: '✓'    },
+      ],
+      section: 'Today\'s Viewings',
+      rows: [
+        { name: 'Michael Brown',  time: '11:00 · 3-Bed Kadıköy',   badge: 'Confirmed', dot: 'dot-g', bg: 'bg-g' },
+        { name: 'Jessica Miller', time: '14:00 · 2-Bed Beşiktaş',  badge: 'Confirmed', dot: 'dot-g', bg: 'bg-g' },
+        { name: 'Daniel Clark',   time: '16:00 · Apt. Ataşehir',   badge: 'Pending',   dot: 'dot-y', bg: 'bg-y' },
+      ]
+    }
+  }
+};
+
 /* ─── HERO PHONE ANIMATOR ───────────────────────────────── */
 class HeroPhone {
   constructor() {
-    this.screens   = Array.from(document.querySelectorAll('.pscreen'));
-    this.dots      = Array.from(document.querySelectorAll('.pdot'));
-    this.current   = 0;
+    this.screens       = Array.from(document.querySelectorAll('.pscreen'));
+    this.dots          = Array.from(document.querySelectorAll('.pdot'));
+    this.currentSector = 'klinik';
+    this.current       = 0;
+    window.heroPhone   = this;
     this.timers    = [];
     this.nextTimer = null; // tracked separately so switchSector can cancel it
     this.durations = [7000, 6500, 6500]; // ms each screen stays visible
@@ -313,8 +454,10 @@ class HeroPhone {
   }
 
   switchSector(key) {
-    const d = SECTOR_DATA[key];
+    const isEn = window.currentLang === 'en';
+    const d = (isEn ? SECTOR_DATA_EN : SECTOR_DATA)[key];
     if (!d) return;
+    this.currentSector = key;
 
     // Cancel every pending timer including the untracked next() transition
     this.timers.forEach(clearTimeout);
@@ -341,7 +484,8 @@ class HeroPhone {
       const flowMsgs = s0.querySelectorAll('.msg-i[data-anim]');
       const lastMsg  = flowMsgs[flowMsgs.length - 1];
       if (lastMsg && lastMsg !== firstMsg) {
-        lastMsg.innerHTML = `<span style="color:#25D366;font-weight:700;font-size:9px;display:block;margin-bottom:4px">${d.flowBadge}</span>${d.flowCardTxt}<div style="background:#25D366;color:#fff;border-radius:6px;padding:5px;font-size:10px;font-weight:700;text-align:center;margin-top:6px">Formu Aç →</div><div class="msg-t">09:42</div>`;
+        const openBtn = isEn ? 'Open Form →' : 'Formu Aç →';
+        lastMsg.innerHTML = `<span style="color:#25D366;font-weight:700;font-size:9px;display:block;margin-bottom:4px">${d.flowBadge}</span>${d.flowCardTxt}<div style="background:#25D366;color:#fff;border-radius:6px;padding:5px;font-size:10px;font-weight:700;text-align:center;margin-top:6px">${openBtn}</div><div class="msg-t">09:42</div>`;
       }
     }
 

@@ -465,11 +465,13 @@ const LANGS = {
 
 /* ─── Core ─────────────────────────────────────────────────── */
 let currentLang = localStorage.getItem('qavio-lang') || 'en';
+window.currentLang = currentLang;
 
 function t(key) { return LANGS[currentLang][key] ?? LANGS.tr[key] ?? key; }
 
 function applyLang(lang) {
   currentLang = lang;
+  window.currentLang = lang;
   localStorage.setItem('qavio-lang', lang);
   document.documentElement.lang = lang;
 
@@ -596,6 +598,12 @@ function renderPscreens() {
       badge.className = 'dash-badge ' + r.badgeCls;
       badge.textContent = r.badge;
     });
+  }
+
+  /* Re-apply active sector in the new language so sector-specific text
+     (greetings, buttons, form titles, dashboard rows) also switches. */
+  if (window.heroPhone) {
+    window.heroPhone.switchSector(window.heroPhone.currentSector || 'klinik');
   }
 }
 
