@@ -665,10 +665,14 @@ function initFadeUp() {
 
 /* ─── CONTACT FORM ───────────────────────────────────────── */
 const WA_NUMBER = '905XXXXXXXXX'; // ← kendi numaranızı girin
+const W3F_KEY   = '71af3b49-80a6-4864-a8ec-c227be023cb7';
 
-window.handleSubmit = function(e) {
+window.handleSubmit = async function(e) {
   e.preventDefault();
-  const fd = new FormData(e.target);
+  const form = e.target;
+  const fd   = new FormData(form);
+
+  // Build WhatsApp message
   const text = encodeURIComponent(
     'Merhaba Qavio! Demo talep ediyorum.\n\n' +
     `Ad: ${fd.get('name')}\nTel: ${fd.get('phone')}\n` +
@@ -676,8 +680,16 @@ window.handleSubmit = function(e) {
     `Sektör: ${fd.get('sector')}\n` +
     (fd.get('message') ? `\nNot: ${fd.get('message')}` : '')
   );
-  document.getElementById('cform').style.display      = 'none';
-  document.getElementById('f-success').style.display  = 'block';
+
+  // Send email via Web3Forms (silent — doesn't block UX)
+  const w3fd = new FormData(form);
+  w3fd.append('access_key', W3F_KEY);
+  fetch('https://api.web3forms.com/submit', { method: 'POST', body: w3fd })
+    .catch(() => {}); // fail silently
+
+  // Show success + open WhatsApp
+  document.getElementById('cform').style.display     = 'none';
+  document.getElementById('f-success').style.display = 'block';
   setTimeout(() => window.open(`https://wa.me/${WA_NUMBER}?text=${text}`, '_blank'), 700);
 };
 
