@@ -665,14 +665,27 @@ function initFadeUp() {
 
 /* ─── CONTACT FORM ───────────────────────────────────────── */
 const WA_NUMBER = '905XXXXXXXXX'; // ← kendi numaranızı girin
-const W3F_KEY   = '71af3b49-80a6-4864-a8ec-c227be023cb7';
 
 window.handleSubmit = async function(e) {
   e.preventDefault();
   const form = e.target;
   const fd   = new FormData(form);
 
-  // Build WhatsApp message
+  // ── Email via Web3Forms → hello@qavio.nl ──
+  const w3fd = new FormData();
+  w3fd.append('access_key', '71af3b49-80a6-4864-a8ec-c227be023cb7');
+  w3fd.append('to_email',   'hello@qavio.nl');
+  w3fd.append('subject',    `Yeni Demo Talebi — ${fd.get('name')}`);
+  w3fd.append('from_name',  'Qavio Website');
+  w3fd.append('name',       fd.get('name')    || '');
+  w3fd.append('phone',      fd.get('phone')   || '');
+  w3fd.append('email',      fd.get('email')   || '');
+  w3fd.append('sector',     fd.get('sector')  || '');
+  w3fd.append('message',    fd.get('message') || '');
+  fetch('https://api.web3forms.com/submit', { method: 'POST', body: w3fd })
+    .catch(() => {});
+
+  // ── WhatsApp redirect ──
   const text = encodeURIComponent(
     'Merhaba Qavio! Demo talep ediyorum.\n\n' +
     `Ad: ${fd.get('name')}\nTel: ${fd.get('phone')}\n` +
@@ -680,14 +693,6 @@ window.handleSubmit = async function(e) {
     `Sektör: ${fd.get('sector')}\n` +
     (fd.get('message') ? `\nNot: ${fd.get('message')}` : '')
   );
-
-  // Send email via Web3Forms (silent — doesn't block UX)
-  const w3fd = new FormData(form);
-  w3fd.append('access_key', W3F_KEY);
-  fetch('https://api.web3forms.com/submit', { method: 'POST', body: w3fd })
-    .catch(() => {}); // fail silently
-
-  // Show success + open WhatsApp
   document.getElementById('cform').style.display     = 'none';
   document.getElementById('f-success').style.display = 'block';
   setTimeout(() => window.open(`https://wa.me/${WA_NUMBER}?text=${text}`, '_blank'), 700);
