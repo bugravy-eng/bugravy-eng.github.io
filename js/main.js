@@ -664,14 +664,11 @@ function initFadeUp() {
 }
 
 /* ─── CONTACT FORM ───────────────────────────────────────── */
-const WA_NUMBER = '905XXXXXXXXX'; // ← kendi numaranızı girin
-
 window.handleSubmit = async function(e) {
   e.preventDefault();
   const form = e.target;
   const fd   = new FormData(form);
 
-  // ── Email via Web3Forms → hello@qavio.nl ──
   const w3fd = new FormData();
   w3fd.append('access_key', '71af3b49-80a6-4864-a8ec-c227be023cb7');
   w3fd.append('to_email',   'hello@qavio.nl');
@@ -685,17 +682,8 @@ window.handleSubmit = async function(e) {
   fetch('https://api.web3forms.com/submit', { method: 'POST', body: w3fd })
     .catch(() => {});
 
-  // ── WhatsApp redirect ──
-  const text = encodeURIComponent(
-    'Merhaba Qavio! Demo talep ediyorum.\n\n' +
-    `Ad: ${fd.get('name')}\nTel: ${fd.get('phone')}\n` +
-    (fd.get('email')   ? `E-posta: ${fd.get('email')}\n`   : '') +
-    `Sektör: ${fd.get('sector')}\n` +
-    (fd.get('message') ? `\nNot: ${fd.get('message')}` : '')
-  );
   document.getElementById('cform').style.display     = 'none';
   document.getElementById('f-success').style.display = 'block';
-  setTimeout(() => window.open(`https://wa.me/${WA_NUMBER}?text=${text}`, '_blank'), 700);
 };
 
 /* ─── SMOOTH SCROLL ──────────────────────────────────────── */
