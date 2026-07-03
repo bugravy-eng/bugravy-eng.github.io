@@ -209,6 +209,7 @@ const LANGS = {
       inp:'Mesaj yazın...',
     },
     'ps-flow': {
+      barTitle:'📅 Randevu Al',
       title:'Randevu Bilgileri', sub:'Formu doldurun, hemen onaylayalım',
       lblName:'Adınız Soyadınız', valName:'Ahmet Yılmaz',
       lblSvc:'Hizmet', valSvc:'Saç Ekimi Konsültasyon',
@@ -439,6 +440,7 @@ const LANGS = {
       inp:'Type a message...',
     },
     'ps-flow': {
+      barTitle:'📅 Book Appointment',
       title:'Appointment Details', sub:'Fill in the form, we\'ll confirm right away',
       lblName:'Full Name', valName:'John Doe',
       lblSvc:'Service', valSvc:'Hair Transplant Consultation',
@@ -563,6 +565,7 @@ function renderPscreens() {
   /* — Screen 1: Flow — */
   const s1 = document.getElementById('pscreen-1');
   if (s1) {
+    const fbarT = s1.querySelector('.flow-bar-t'); if (fbarT) fbarT.textContent = flow.barTitle;
     const fh1 = s1.querySelector('.flow-h1'); if (fh1) fh1.textContent = flow.title;
     const fsub = s1.querySelector('.flow-sub'); if (fsub) fsub.textContent = flow.sub;
     const lbls = s1.querySelectorAll('.flow-lbl');

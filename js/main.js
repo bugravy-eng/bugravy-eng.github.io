@@ -492,6 +492,9 @@ class HeroPhone {
     // ── Update pscreen-1 flow form content ──
     const s1 = document.getElementById('pscreen-1');
     if (s1) {
+      const barT = s1.querySelector('.flow-bar-t');
+      if (barT) barT.textContent = d.buttons[0];
+
       const h1 = s1.querySelector('.flow-h1');
       if (h1) h1.textContent = d.formTitle;
 
