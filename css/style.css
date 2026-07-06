@@ -51,15 +51,8 @@ body {
   transform: translate(-50%,-50%);
   transition: width .25s, height .25s;
 }
-#cur-ring {
-  width: 40px; height: 40px;
-  border: 1.5px solid var(--orange); border-radius: 50%;
-  position: fixed; top: 0; left: 0; pointer-events: none; z-index: 9998;
-  transform: translate(-50%,-50%);
-  transition: width .4s cubic-bezier(.23,1,.32,1), height .4s cubic-bezier(.23,1,.32,1);
-}
-body.c-hover #cur-dot { width: 0; height: 0; }
-body.c-hover #cur-ring { width: 68px; height: 68px; }
+#cur-ring { display: none; }
+body.c-hover #cur-dot { width: 14px; height: 14px; }
 input, textarea, select { cursor: auto; }
 
 /* ─── NAV ─── */
